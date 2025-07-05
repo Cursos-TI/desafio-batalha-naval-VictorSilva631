@@ -1,1 +1,50 @@
+#include <stdio.h>
 
+#define TAMANHO_TABULEIRO 10
+#define TAMANHO_NAVIO_H 4
+#define TAMANHO_NAVIO_V 3
+
+int main() {
+    // Coordenadas de início dos navios
+    int inicio_horizontal_x = 2, inicio_horizontal_y = 3;
+    int inicio_vertical_x = 6, inicio_vertical_y = 1;
+
+    // Tabuleiro (opcional, para representar visualmente)
+    char tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+
+    // Inicializando o tabuleiro com '~'
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            tabuleiro[i][j] = '~';
+        }
+    }
+
+    // Posicionando o navio horizontal
+    printf("Navio Horizontal:\n");
+    for (int i = 0; i < TAMANHO_NAVIO_H; i++) {
+        int x = inicio_horizontal_x;
+        int y = inicio_horizontal_y + i;
+        printf("Parte %d -> Coordenada: (%d, %d)\n", i + 1, x, y);
+        tabuleiro[x][y] = 'H';
+    }
+
+    // Posicionando o navio vertical
+    printf("\nNavio Vertical:\n");
+    for (int i = 0; i < TAMANHO_NAVIO_V; i++) {
+        int x = inicio_vertical_x + i;
+        int y = inicio_vertical_y;
+        printf("Parte %d -> Coordenada: (%d, %d)\n", i + 1, x, y);
+        tabuleiro[x][y] = 'V';
+    }
+
+    // Exibindo o tabuleiro final
+    printf("\nTabuleiro:\n");
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            printf("%c ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
