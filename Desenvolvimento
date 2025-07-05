@@ -3,13 +3,17 @@
 #include <math.h>
 
 #define TAMANHO 10
+#define OCUPADO 3
+#define LIVRE 0
 
+// Inicializa o tabuleiro com valor 0
 void inicializarMatriz(int matriz[TAMANHO][TAMANHO]) {
     for (int i = 0; i < TAMANHO; i++)
         for (int j = 0; j < TAMANHO; j++)
             matriz[i][j] = 0;
 }
 
+// Exibe qualquer matriz com título
 void exibirMatriz(int matriz[TAMANHO][TAMANHO], const char* titulo) {
     printf("\n%s\n\n   ", titulo);
     for (int i = 0; i < TAMANHO; i++) printf("%d ", i);
@@ -23,7 +27,32 @@ void exibirMatriz(int matriz[TAMANHO][TAMANHO], const char* titulo) {
     }
 }
 
-// Habilidade: Cruz centrada em (x,y)
+// Nível Novato e Intermediário - Posicionamento de navios
+void posicionarNavioHorizontal(int matriz[TAMANHO][TAMANHO], int x, int y, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        matriz[x][y + i] = OCUPADO;
+    }
+}
+
+void posicionarNavioVertical(int matriz[TAMANHO][TAMANHO], int x, int y, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        matriz[x + i][y] = OCUPADO;
+    }
+}
+
+void posicionarNavioDiagonalDireita(int matriz[TAMANHO][TAMANHO], int x, int y, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        matriz[x + i][y + i] = OCUPADO;
+    }
+}
+
+void posicionarNavioDiagonalEsquerda(int matriz[TAMANHO][TAMANHO], int x, int y, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        matriz[x + i][y - i] = OCUPADO;
+    }
+}
+
+// Nível Mestre - Habilidades especiais
 void habilidadeCruz(int matriz[TAMANHO][TAMANHO], int x, int y, int alcance) {
     for (int i = -alcance; i <= alcance; i++) {
         if (x + i >= 0 && x + i < TAMANHO)
@@ -33,7 +62,6 @@ void habilidadeCruz(int matriz[TAMANHO][TAMANHO], int x, int y, int alcance) {
     }
 }
 
-// Habilidade: Cone para baixo a partir de (x,y)
 void habilidadeCone(int matriz[TAMANHO][TAMANHO], int x, int y, int altura) {
     for (int i = 0; i < altura; i++) {
         for (int j = -i; j <= i; j++) {
@@ -45,7 +73,6 @@ void habilidadeCone(int matriz[TAMANHO][TAMANHO], int x, int y, int altura) {
     }
 }
 
-// Habilidade: Octaedro (ou losango 2D) em torno de (x,y)
 void habilidadeOctaedro(int matriz[TAMANHO][TAMANHO], int x, int y, int raio) {
     for (int dx = -raio; dx <= raio; dx++) {
         for (int dy = -raio; dy <= raio; dy++) {
@@ -60,24 +87,30 @@ void habilidadeOctaedro(int matriz[TAMANHO][TAMANHO], int x, int y, int raio) {
 }
 
 int main() {
-    int cone[TAMANHO][TAMANHO];
-    int cruz[TAMANHO][TAMANHO];
-    int octaedro[TAMANHO][TAMANHO];
+    int tabuleiro[TAMANHO][TAMANHO];
+    inicializarMatriz(tabuleiro);
 
-    // Inicialização
+    // Nível Intermediário - posicionando 4 navios
+    posicionarNavioHorizontal(tabuleiro, 1, 1, 4);
+    posicionarNavioVertical(tabuleiro, 2, 8, 3);
+    posicionarNavioDiagonalDireita(tabuleiro, 5, 0, 4);
+    posicionarNavioDiagonalEsquerda(tabuleiro, 0, 9, 3);
+
+    exibirMatriz(tabuleiro, "Tabuleiro com Navios (0 = livre, 3 = navio)");
+
+    // Nível Mestre - habilidades especiais
+    int cone[TAMANHO][TAMANHO], cruz[TAMANHO][TAMANHO], octaedro[TAMANHO][TAMANHO];
     inicializarMatriz(cone);
     inicializarMatriz(cruz);
     inicializarMatriz(octaedro);
 
-    // Aplicando habilidades
-    habilidadeCone(cone, 2, 5, 4);         // Cone para baixo
-    habilidadeCruz(cruz, 5, 5, 3);         // Cruz com alcance 3
-    habilidadeOctaedro(octaedro, 7, 3, 3); // Octaedro centrado em (7,3)
+    habilidadeCone(cone, 2, 5, 4);
+    habilidadeCruz(cruz, 5, 5, 3);
+    habilidadeOctaedro(octaedro, 7, 3, 3);
 
-    // Exibir matrizes
-    exibirMatriz(cone, "Área de habilidade: Cone");
-    exibirMatriz(cruz, "Área de habilidade: Cruz");
-    exibirMatriz(octaedro, "Área de habilidade: Octaedro");
+    exibirMatriz(cone, "Área de Habilidade: Cone");
+    exibirMatriz(cruz, "Área de Habilidade: Cruz");
+    exibirMatriz(octaedro, "Área de Habilidade: Octaedro");
 
     return 0;
 }
