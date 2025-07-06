@@ -1,0 +1,98 @@
+# Batalha Naval - Projeto em C
+
+Este projeto implementa um jogo de Batalha Naval em três níveis de complexidade: **Novato**, **Intermediário** e **Mestre**, utilizando a linguagem C. O objetivo é ensinar gradualmente estruturas de controle, matrizes e lógica de programação aplicada a jogos.
+
+---
+
+## 🚀 Níveis de Complexidade
+
+### 🟢 Nível Novato - Posicionamento Básico
+
+* Utiliza vetores bidimensionais para representar o tabuleiro.
+* Posiciona dois navios manualmente:
+
+  * 1 navio horizontal
+  * 1 navio vertical
+* Exibe as coordenadas de cada parte dos navios usando `printf`.
+
+### 🟡 Nível Intermediário - Expansão de Tabuleiro
+
+* Tabuleiro expandido para 10x10.
+* Posicionamento de 4 navios:
+
+  * 1 horizontal
+  * 1 vertical
+  * 2 diagonais (↘ e ↙)
+* O tabuleiro é preenchido com:
+
+  * `0` para posição livre
+  * `3` para posição ocupada por navio
+* Exibição completa da matriz no console.
+
+### 🔴 Nível Mestre - Habilidades Especiais
+
+* Três novas matrizes representam padrões de ataque:
+
+  * **Cone**: formato de V invertido
+  * **Cruz**: cruz centrada com raio de alcance
+  * **Octaedro**: forma de diamante 2D
+* Utiliza **laços aninhados** para gerar padrões.
+* Áreas afetadas são marcadas com `1`, áreas livres com `0`.
+
+---
+
+## 📁 Estrutura do Código
+
+* `main()` centraliza a execução.
+* Funções separadas para:
+
+  * Inicialização e exibição de tabuleiros
+  * Posicionamento de navios
+  * Aplicação de padrões de habilidades
+
+---
+
+## 💡 Como Executar
+
+1. Copie o código fonte `batalha_naval_completo.c` para seu editor C (ex: VSCode ou Code::Blocks).
+2. Compile e execute o projeto.
+3. Observe as três etapas de saída no console:
+
+   * Posições dos navios
+   * Áreas de ataque das habilidades especiais
+
+---
+
+## 📷 Exemplo de Saída (Resumo)
+
+```
+Tabuleiro com Navios:
+0 0 0 0 0 0 0 0 0 0
+...
+Área de Habilidade: Cone
+0 0 0 0 0 0 0 0 0 0
+...
+Área de Habilidade: Cruz
+...
+Área de Habilidade: Octaedro
+...
+```
+
+---
+
+## 📌 Requisitos
+
+* Compilador C (gcc, clang ou ambiente IDE como Code::Blocks)
+* Conhecimentos básicos em programação C
+
+---
+
+## ✍️ Autor
+
+* **Victor B.** (idealizador)
+
+---
+
+## 📄 Licença
+
+Este projeto pode ser usado livremente para fins educacionais. Sinta-se à vontade para clonar, modificar e compartilhar com créditos ao autor.
