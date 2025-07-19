@@ -20,8 +20,8 @@ Prezado avaliador, este é um código de **Batalha Naval programado em linguagem
 - Quatro navios:
   - Horizontal
   - Vertical
-  - Diagonal ↘
-  - Diagonal ↙
+  - Diagonal 
+  - Diagonal 
 - Exibe tabuleiro com `0 = vazio` e `3 = ocupado`
 
 ###  Nível Mestre – Habilidades Especiais
